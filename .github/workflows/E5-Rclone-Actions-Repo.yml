@@ -37,9 +37,9 @@ jobs:
           IFS=';' read -ra REMOTES <<< "$REMOTE_NAMES"
           for REMOTE in "${REMOTES[@]}"; do
             echo "Processing remote: $REMOTE"
-            rclone lsd "$REMOTE:/" --config=rclone.conf > "lsd.log"
-            rclone cat "$REMOTE:/dummy.txt" --config=rclone.conf
-            rclone copy "$REMOTE:/dummy.txt" . --config=rclone.conf
+            rclone lsd "$REMOTE:" --config=rclone.conf > "lsd.log"
+            rclone cat "$REMOTE:shared/dummy.txt" --config=rclone.conf
+            rclone copy "$REMOTE:shared/dummy.txt" . --config=rclone.conf
             rclone mkdir "$REMOTE:E5-Rclone-Actions-Repo/" --config=rclone.conf
             rclone rmdir "$REMOTE:E5-Rclone-Actions-Repo/" --config=rclone.conf
             rm dummy.txt
